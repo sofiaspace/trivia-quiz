@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-  font-family: Georgia, "Times New Roman", Times, serif;
   margin-top: 20px;
   border: none;
   border-radius: 23px;

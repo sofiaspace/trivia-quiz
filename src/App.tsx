@@ -8,6 +8,7 @@ import { AppContainer } from "./App.style";
 import Loader from "./ui/Loader/Loader";
 import QuestionsPage from "./components/QuestionsPage/QuestionsPage";
 import QuestionsList from "./components/QuestionsPage/QuestionsList";
+import ProgressBar from "./ui/ProgressBar/ProgressBar";
 
 const App: FC = () => {
   const { status } = useQuizContext();
@@ -21,12 +22,14 @@ const App: FC = () => {
       {status === "active" && <LevelsPage />}
       {status === "back" && <LevelsPage />}
       {status === "ready" && <QuestionsPage />}
-      {status === "start" && <QuestionsList />}
+      {status === "start" && (
+        <>
+          <ProgressBar />
+          <QuestionsList />
+        </>
+      )}
     </AppContainer>
   );
 };
 
 export default App;
-
-// https://opentdb.com/api.php?amount=50
-// https://opentdb.com/api.php?amount=15

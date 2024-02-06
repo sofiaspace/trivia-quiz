@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { device } from "./mediaBreakpoints";
 
 const styled = { createGlobalStyle };
 export const GlobalStyles = styled.createGlobalStyle`
@@ -19,5 +20,13 @@ export const GlobalStyles = styled.createGlobalStyle`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    /* @media ${device.md} {
+      padding: 50px 5px;
+    }
+
+    @media ${device.xs} {
+      font-size: 10px;
+      /* padding: 50px 5px; */
   }
 `;
