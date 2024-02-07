@@ -1,18 +1,29 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-  margin-top: 20px;
+  margin-top: 10px;
   border: none;
   border-radius: 23px;
   font-weight: 700;
   font-size: 15px;
-  background-color: #dbb3ee;
+  background-color: #ffffff;
   padding: 15px 25px;
+  color: black;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     background-color: #e4ceed;
     transition: 1s;
     filter: drop-shadow(0 0 1em #e4ceed);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.correct {
+    filter: none;
+    background-color: green;
+    transition: none;
   }
 `;

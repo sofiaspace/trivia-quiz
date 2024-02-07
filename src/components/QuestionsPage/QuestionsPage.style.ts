@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const QuestionsPageContainer = styled.div`
-  margin-top: 60px;
+  font-size: large;
 `;
 
 export const ButtonsFooter = styled.div`

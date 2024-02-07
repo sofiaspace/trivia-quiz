@@ -1,28 +1,34 @@
-import React, { FC, useEffect, useState } from "react";
-import { ProgressBarContainer } from "./ProgressBar.style";
+import React, { FC, useEffect } from "react";
+import { ProgressBarContainer, ProgressInfo } from "./ProgressBar.style";
+import useQuizContext from "../../hooks/useQuizContext";
 
 interface ProgressBarProps {}
 
 const ProgressBar: FC<ProgressBarProps> = () => {
-  const [value, setValue] = useState(0);
-  const [seconds, setSeconds] = useState(10);
+  const { dispatch, progressValue, seconds, activeQuestion } = useQuizContext();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (value < 10) {
-        setValue((oldValue) => oldValue + 1);
-        setSeconds((seconds) => seconds - 1);
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [value]);
+  const active = activeQuestion + 1;
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (progressValue < 10) {
+  //       dispatch({ type: "timer" });
+  //     } else {
+  //       dispatch({ type: "nextQuestion" });
+  //     }
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [progressValue, dispatch]);
 
   return (
     <ProgressBarContainer>
-      <progress value={value} max={10}></progress> 0:
-      {seconds < 10 ? `0${seconds}` : seconds}
+      <progress value={progressValue} max={10}></progress>
+      <ProgressInfo>
+        <span>{active}/15</span>{" "}
+        <span>0:{seconds < 10 ? `0${seconds}` : seconds}</span>
+      </ProgressInfo>
     </ProgressBarContainer>
   );
 };

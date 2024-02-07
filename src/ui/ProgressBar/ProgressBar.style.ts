@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const ProgressBarContainer = styled.div`
-  padding-bottom: 10rem;
+  padding-bottom: 5%;
 
   progress[value] {
-    width: 400px;
+    width: 100%;
     -webkit-appearance: none;
     appearance: none;
   }
@@ -22,19 +22,10 @@ export const ProgressBarContainer = styled.div`
   }
 `;
 
-// export const Progress = styled.progress`
-//   width: 300px;
-//   appearance: none;
-
-//   ::-webkit-progress-bar {
-//     height: 10px;
-//     border-radius: 20px;
-//     background-color: darkorchid;
-//   }
-
-//   ::-webkit-progress-value {
-//     height: 10px;
-//     border-radius: 20px;
-//     background-color: cornsilk;
-//   }
-// `;
+export const ProgressInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 80%;
+`;

@@ -28,17 +28,22 @@ export const QuizProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   useEffect(() => {
-    async function fetchQuestions() {
+    async function fetchEasyQuestions() {
+      if (!state.difficulty) {
+        return;
+      }
       try {
-        const res = await fetch(`https://opentdb.com/api.php?amount=50`);
+        const res = await fetch(
+          `https://opentdb.com/api.php?amount=15&difficulty=${state.difficulty}`
+        );
         const data = (await res.json()) as QuestionsData;
         dispatch({ type: "dataReceived", payload: data.results });
       } catch (err) {
         throw new Error("Error fetching quiz data");
       }
     }
-    fetchQuestions();
-  }, []);
+    fetchEasyQuestions();
+  }, [state.difficulty]);
 
   return (
     <QuizContext.Provider value={{ ...state, dispatch }}>
@@ -46,6 +51,3 @@ export const QuizProvider: FC<PropsWithChildren> = ({ children }) => {
     </QuizContext.Provider>
   );
 };
-
-// https://opentdb.com/api.php?amount=50
-// https://opentdb.com/api.php?amount=15

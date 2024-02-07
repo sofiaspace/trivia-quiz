@@ -14,9 +14,13 @@ const QuestionsPage: FC<QuestionsPageProps> = () => {
         You picked <b>{difficulty}</b> difficulty for your questions!
       </p>
       <p>Ιf you want to choose another level of difficulty, click Back. </p>
+      <p></p>
       <p>
         If you are ready, take a deep breath and embrace yourself with the
-        knowledge coming!
+        knowledge coming through 15 thrilling questions!
+      </p>
+      <p>
+        But remember, you’ve got a mere 10 seconds to answer each question!{" "}
       </p>
       <ButtonsFooter>
         <Button onClick={() => dispatch({ type: "back" })}>Back</Button>

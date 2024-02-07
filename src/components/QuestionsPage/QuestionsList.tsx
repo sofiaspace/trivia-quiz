@@ -6,28 +6,61 @@ import {
   QuestionsListContainer,
 } from "./QuestionsList.style";
 import he from "he";
+import { Button } from "../../ui/Button/Button";
 
 interface QuestionsListProps {}
 
 const QuestionsList: FC<QuestionsListProps> = () => {
-  const { questions = [], activeQuestion } = useQuizContext();
+  const {
+    questions = [],
+    activeQuestion,
+    dispatch,
+    selectedAnswer,
+  } = useQuizContext();
   console.log(questions);
 
-  // const { correct_answer, incorrect_answers } = questions;
+  if (questions === undefined) return null;
 
-  // const answers = [correct_answer, ...incorrect_answers];
+  const { correct_answer, incorrect_answers } = questions[activeQuestion];
+
+  const answers = [correct_answer, ...incorrect_answers];
 
   return (
-    // <QuestionsListContainer
-    //   dangerouslySetInnerHTML={{ __html: questions[1].question }}
-    // />
     <QuestionsListContainer>
       <QuestionContainer>
         {he.decode(questions[activeQuestion].question)}
       </QuestionContainer>
       <AnswersContainer>
-        {questions[activeQuestion].correct_answer}
+        {answers.map((answer) => (
+          <Button
+            disabled={selectedAnswer !== ""}
+            className={
+              selectedAnswer !== ""
+                ? answer === correct_answer
+                  ? "correct"
+                  : ""
+                : ""
+            }
+            key={answer}
+            onClick={() => {
+              dispatch({ type: "select", payload: answer });
+              if (answer === correct_answer) {
+                dispatch({
+                  type: "updateScore",
+                  payload: 1,
+                });
+              }
+            }}
+          >
+            {he.decode(answer)}
+          </Button>
+        ))}
       </AnswersContainer>
+      {activeQuestion === 14 ? (
+        <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
+      ) : (
+        <Button onClick={() => dispatch({ type: "nextQuestion" })}>Next</Button>
+      )}
     </QuestionsListContainer>
   );
 };
