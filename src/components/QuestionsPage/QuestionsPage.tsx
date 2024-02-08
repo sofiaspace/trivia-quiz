@@ -3,9 +3,7 @@ import { ButtonsFooter, QuestionsPageContainer } from "./QuestionsPage.style";
 import useQuizContext from "../../hooks/useQuizContext";
 import { Button } from "../../ui/Button/Button";
 
-interface QuestionsPageProps {}
-
-const QuestionsPage: FC<QuestionsPageProps> = () => {
+const QuestionsPage: FC = () => {
   const { difficulty, dispatch } = useQuizContext();
 
   return (
@@ -19,11 +17,9 @@ const QuestionsPage: FC<QuestionsPageProps> = () => {
         If you are ready, take a deep breath and embrace yourself with the
         knowledge coming through 15 thrilling questions!
       </p>
-      <p>
-        But remember, you’ve got a mere 10 seconds to answer each question!{" "}
-      </p>
+      <p>But remember, you’ve got 90 seconds to answer to all questions! </p>
       <ButtonsFooter>
-        <Button onClick={() => dispatch({ type: "back" })}>Back</Button>
+        <Button onClick={() => dispatch({ type: "active" })}>Back</Button>
         <Button onClick={() => dispatch({ type: "start" })}>Start</Button>
       </ButtonsFooter>
     </QuestionsPageContainer>

@@ -8,3 +8,12 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   gap: 30%;
 `;
+
+export const Text = styled.u`
+  cursor: pointer;
+
+  &:hover {
+    color: #e4ceed;
+    transition: 1s;
+  }
+`;

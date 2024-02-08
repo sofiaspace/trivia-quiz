@@ -11,14 +11,14 @@ export const ButtonContainer = styled.button`
   color: black;
   cursor: pointer;
 
-  &:hover {
+  &:not([disabled]):hover {
     background-color: #e4ceed;
     transition: 1s;
     filter: drop-shadow(0 0 1em #e4ceed);
   }
 
   &:disabled {
-    cursor: not-allowed;
+    cursor: default;
   }
 
   &.correct {

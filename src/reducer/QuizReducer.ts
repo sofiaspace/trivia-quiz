@@ -6,6 +6,7 @@ export interface QuizState {
   progressValue: number;
   seconds: number;
   selectedAnswer: string | undefined;
+  allAnswers: string[];
   score: number;
 }
 
@@ -14,8 +15,11 @@ export type QuizAction =
   | { type: "start" }
   | { type: "back" }
   | { type: "finish" }
+  | { type: "restart" }
+  | { type: "timeIsUp" }
   | { type: "timer" }
-  | { type: "select"; payload: string | undefined }
+  | { type: "checkAnswers" }
+  | { type: "select"; payload: string }
   | { type: "updateScore"; payload: number }
   | { type: "nextQuestion" }
   | { type: "setDifficulty"; payload: string | undefined }
@@ -41,9 +45,10 @@ export const initialState = {
   questions: [],
   activeQuestion: 0,
   progressValue: 0,
-  seconds: 10,
+  seconds: 90,
   selectedAnswer: "",
   score: 0,
+  allAnswers: [],
 };
 
 export const QuizReduce = (state: QuizState, action: QuizAction) => {
@@ -52,8 +57,6 @@ export const QuizReduce = (state: QuizState, action: QuizAction) => {
       return { ...state, status: "active" };
     case "start":
       return { ...state, status: "start" };
-    case "back":
-      return { ...state, status: "back" };
     case "setDifficulty":
       return { ...state, difficulty: action.payload, status: "ready" };
     case "dataReceived":
@@ -63,21 +66,30 @@ export const QuizReduce = (state: QuizState, action: QuizAction) => {
         ...state,
         activeQuestion: state.activeQuestion + 1,
         selectedAnswer: "",
-        progressValue: 0,
-        seconds: 10,
       };
     case "timer":
       return {
         ...state,
         progressValue: state.progressValue + 1,
         seconds: state.seconds - 1,
+        status: state.seconds === 0 ? "finished" : state.status,
       };
     case "select":
-      return { ...state, selectedAnswer: action.payload };
+      return {
+        ...state,
+        selectedAnswer: action.payload,
+        allAnswers: [...state.allAnswers, action.payload],
+      };
     case "updateScore":
       return { ...state, score: state.score + action.payload };
     case "finish":
-      return { ...state, status: "finished" };
+      return { ...state, activeQuestion: 0, status: "finished" };
+    case "restart":
+      return { ...initialState, status: "active" };
+    case "checkAnswers":
+      return { ...state, status: "check" };
+    case "timeIsUp":
+      return { ...state, status: "timeUp" };
 
     default:
       throw new Error("Unknown Action");

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import useQuizContext from "../../hooks/useQuizContext";
 import {
   AnswersContainer,
@@ -11,6 +11,7 @@ import { Button } from "../../ui/Button/Button";
 interface QuestionsListProps {}
 
 const QuestionsList: FC<QuestionsListProps> = () => {
+  const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
   const {
     questions = [],
     activeQuestion,
@@ -19,11 +20,22 @@ const QuestionsList: FC<QuestionsListProps> = () => {
   } = useQuizContext();
   console.log(questions);
 
-  if (questions === undefined) return null;
-
   const { correct_answer, incorrect_answers } = questions[activeQuestion];
 
-  const answers = [correct_answer, ...incorrect_answers];
+  const shuffle = (array: string[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    const answers = [correct_answer, ...incorrect_answers];
+    setShuffledAnswers(shuffle(answers));
+  }, [correct_answer, incorrect_answers]);
+
+  if (questions === undefined) return null;
 
   return (
     <QuestionsListContainer>
@@ -31,7 +43,7 @@ const QuestionsList: FC<QuestionsListProps> = () => {
         {he.decode(questions[activeQuestion].question)}
       </QuestionContainer>
       <AnswersContainer>
-        {answers.map((answer) => (
+        {shuffledAnswers.map((answer) => (
           <Button
             disabled={selectedAnswer !== ""}
             className={
@@ -56,10 +68,16 @@ const QuestionsList: FC<QuestionsListProps> = () => {
           </Button>
         ))}
       </AnswersContainer>
-      {activeQuestion === 14 ? (
+      {selectedAnswer && activeQuestion === 14 && (
         <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
-      ) : (
-        <Button onClick={() => dispatch({ type: "nextQuestion" })}>Next</Button>
+      )}
+      {selectedAnswer && activeQuestion !== 14 && (
+        <Button
+          disabled={!selectedAnswer}
+          onClick={() => dispatch({ type: "nextQuestion" })}
+        >
+          Next
+        </Button>
       )}
     </QuestionsListContainer>
   );

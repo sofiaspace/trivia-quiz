@@ -1,22 +1,20 @@
 import styled from "styled-components";
 
 export const AppContainer = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative;
+  position: relative; */
 `;
 export const PagesContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  position: sticky;
-  padding-top: 30px;
+  max-width: 600px;
 `;
 
-export const DisplayQuestions = styled.div`
-  padding-top: 8rem;
-  width: 500px;
-`;
+export const DisplayQuestions = styled.div``;

@@ -8,5 +8,5 @@ export const QuestionContainer = styled.div`
 export const AnswersContainer = styled.div`
   text-align-last: left;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 500px;
 `;

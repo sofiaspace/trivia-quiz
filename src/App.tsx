@@ -10,28 +10,33 @@ import QuestionsPage from "./components/QuestionsPage/QuestionsPage";
 import QuestionsList from "./components/QuestionsPage/QuestionsList";
 import ProgressBar from "./ui/ProgressBar/ProgressBar";
 import FinalPage from "./components/FinalPage/FinalPage";
+import AnsweredQuestions from "./components/AnsweredQuestionsPage/AnsweredQuestions";
+import TimeUpPage from "./components/TimeUpPage/TimeUpPage";
 
 const App: FC = () => {
   const { status } = useQuizContext();
 
   return (
     <AppContainer>
-      <GlobalStyles />
       <PagesContainer>
         <Header />
         {status === "loading" && <Loader />}
         {status === "online" && <StartingPage />}
         {status === "active" && <LevelsPage />}
-        {status === "back" && <LevelsPage />}
         {status === "ready" && <QuestionsPage />}
         {status === "start" && (
-          <DisplayQuestions>
+          <>
             <ProgressBar />
             <QuestionsList />
-          </DisplayQuestions>
+          </>
         )}
-        {status === "finished" && <FinalPage />}
+        <>
+          {status === "finished" && <FinalPage />}
+          {status === "check" && <AnsweredQuestions />}
+          {status === "timeUp" && <TimeUpPage />}
+        </>
       </PagesContainer>
+      <GlobalStyles />
     </AppContainer>
   );
 };

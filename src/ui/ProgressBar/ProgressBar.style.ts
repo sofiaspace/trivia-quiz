@@ -4,7 +4,7 @@ export const ProgressBarContainer = styled.div`
   padding-bottom: 5%;
 
   progress[value] {
-    width: 100%;
+    max-width: 500px;
     -webkit-appearance: none;
     appearance: none;
   }
