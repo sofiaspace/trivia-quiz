@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../styles/mediaBreakpoints";
 
 export const QuestionsListContainer = styled.div``;
 
@@ -7,6 +8,15 @@ export const QuestionContainer = styled.div`
 `;
 export const AnswersContainer = styled.div`
   text-align-last: left;
-  display: grid;
-  grid-template-columns: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+
+  @media ${device.md} {
+    width: 400px;
+  }
+
+  @media ${device.sm} {
+    width: 300px;
+  }
 `;

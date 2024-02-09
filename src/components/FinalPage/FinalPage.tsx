@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import useQuizContext from "../../hooks/useQuizContext";
 import { ButtonsContainer, FinalPageContainer, Text } from "./FinalPage.style";
 import { Button } from "../../ui/Button/Button";

@@ -1,10 +1,20 @@
 import styled from "styled-components";
+import { device } from "../../styles/mediaBreakpoints";
 
 export const ProgressBarContainer = styled.div`
   padding-bottom: 5%;
 
   progress[value] {
-    max-width: 500px;
+    width: 500px;
+
+    @media ${device.md} {
+      width: 350px;
+    }
+
+    @media ${device.sm} {
+      width: 250px;
+    }
+
     -webkit-appearance: none;
     appearance: none;
   }
@@ -25,7 +35,5 @@ export const ProgressBarContainer = styled.div`
 export const ProgressInfo = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 80%;
+  justify-content: space-between;
 `;

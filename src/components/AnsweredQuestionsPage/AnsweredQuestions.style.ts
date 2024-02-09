@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { device } from "../../styles/mediaBreakpoints";
 
 export const AnsweredQuestionsContainer = styled.div`
-  /* margin-top: 30px; */
-  /* margin: 80% 5% 10%; */
+  width: 800px;
 
-  /* p {
-    padding: 0 20% 5%;
-  } */
+  @media ${device.md} {
+    width: 350px;
+  }
+
+  @media ${device.sm} {
+    width: 250px;
+  }
 `;
 
 export const DisplayedQuestions = styled.div`
@@ -14,11 +18,15 @@ export const DisplayedQuestions = styled.div`
   filter: drop-shadow(0 0 0.5em #e4ceed);
   border-radius: 30px;
   color: black;
-  /* padding: 3%; */
   text-align: left;
-  /* margin-bottom: 7px; */
+  padding: 10px 20px;
 `;
 
 export const QuestionsList = styled.li`
-  /* margin: 5px; */
+  padding-bottom: 15px;
+`;
+export const AnswersContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 `;

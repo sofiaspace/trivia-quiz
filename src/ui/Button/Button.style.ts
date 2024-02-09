@@ -19,11 +19,16 @@ export const ButtonContainer = styled.button`
 
   &:disabled {
     cursor: default;
+    background-color: #c1c0bc;
   }
 
   &.correct {
     filter: none;
     background-color: green;
     transition: none;
+  }
+
+  &.incorrect {
+    background-color: red;
   }
 `;

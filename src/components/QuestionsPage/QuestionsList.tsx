@@ -36,6 +36,7 @@ const QuestionsList: FC<QuestionsListProps> = () => {
   }, [correct_answer, incorrect_answers]);
 
   if (questions === undefined) return null;
+  console.log(selectedAnswer);
 
   return (
     <QuestionsListContainer>
@@ -43,19 +44,20 @@ const QuestionsList: FC<QuestionsListProps> = () => {
         {he.decode(questions[activeQuestion].question)}
       </QuestionContainer>
       <AnswersContainer>
-        {shuffledAnswers.map((answer) => (
+        {shuffledAnswers.map((answer, index) => (
           <Button
             disabled={selectedAnswer !== ""}
             className={
               selectedAnswer !== ""
                 ? answer === correct_answer
                   ? "correct"
-                  : ""
+                  : "incorrect"
                 : ""
             }
             key={answer}
             onClick={() => {
               dispatch({ type: "select", payload: answer });
+              console.log(answer);
               if (answer === correct_answer) {
                 dispatch({
                   type: "updateScore",
@@ -68,10 +70,14 @@ const QuestionsList: FC<QuestionsListProps> = () => {
           </Button>
         ))}
       </AnswersContainer>
-      {selectedAnswer && activeQuestion === 14 && (
-        <Button onClick={() => dispatch({ type: "finish" })}>Finish</Button>
-      )}
-      {selectedAnswer && activeQuestion !== 14 && (
+      {activeQuestion === 14 ? (
+        <Button
+          onClick={() => dispatch({ type: "finish" })}
+          disabled={!selectedAnswer}
+        >
+          Finish
+        </Button>
+      ) : (
         <Button
           disabled={!selectedAnswer}
           onClick={() => dispatch({ type: "nextQuestion" })}

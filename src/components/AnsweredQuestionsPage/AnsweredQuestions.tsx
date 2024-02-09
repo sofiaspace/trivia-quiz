@@ -2,6 +2,7 @@ import { FC } from "react";
 import he from "he";
 import {
   AnsweredQuestionsContainer,
+  AnswersContainer,
   DisplayedQuestions,
   QuestionsList,
 } from "./AnsweredQuestions.style";
@@ -23,10 +24,10 @@ const AnsweredQuestions: FC = () => {
           {questions?.map((question, index) => (
             <QuestionsList>
               <div>{he.decode(question.question)}</div>
-              <div>
-                Correct answer: {he.decode(question.correct_answer)}, your
-                answer: {allAnswers[index]}
-              </div>
+              <AnswersContainer>
+                <div>Correct answer: {he.decode(question.correct_answer)}</div>
+                <div>Your answer: {allAnswers[index]}</div>
+              </AnswersContainer>
             </QuestionsList>
           ))}
         </ol>
