@@ -2,10 +2,8 @@ import styled from "styled-components";
 import { device } from "../../styles/mediaBreakpoints";
 
 export const ProgressBarContainer = styled.div`
-  padding-bottom: 5%;
-
   progress[value] {
-    width: 500px;
+    width: 100%;
 
     @media ${device.md} {
       width: 350px;

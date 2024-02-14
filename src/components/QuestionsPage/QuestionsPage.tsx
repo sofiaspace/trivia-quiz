@@ -1,10 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ButtonsFooter, QuestionsPageContainer } from "./QuestionsPage.style";
 import useQuizContext from "../../hooks/useQuizContext";
 import { Button } from "../../ui/Button/Button";
+import Loader from "../../ui/Loader/Loader";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const QuestionsPage: FC = () => {
-  const { difficulty, dispatch } = useQuizContext();
+  const { difficulty, dispatch, isLoading, questions } = useQuizContext();
+
+  if (isLoading) return <Loader />;
+  if (questions === undefined) return <ErrorPage />;
 
   return (
     <QuestionsPageContainer>
@@ -12,7 +17,6 @@ const QuestionsPage: FC = () => {
         You picked <b>{difficulty}</b> difficulty for your questions!
       </p>
       <p>Ιf you want to choose another level of difficulty, click Back. </p>
-      <p></p>
       <p>
         If you are ready, take a deep breath and embrace yourself with the
         knowledge coming through 15 thrilling questions!

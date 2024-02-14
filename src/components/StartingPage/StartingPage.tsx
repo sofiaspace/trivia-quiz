@@ -3,9 +3,7 @@ import { Greeting, StartingPageContainer } from "./StartingPage.style";
 import useQuizContext from "../../hooks/useQuizContext";
 import { Button } from "../../ui/Button/Button";
 
-interface StartingPageProps {}
-
-const StartingPage: FC<StartingPageProps> = () => {
+const StartingPage: FC = () => {
   const { dispatch } = useQuizContext();
 
   return (

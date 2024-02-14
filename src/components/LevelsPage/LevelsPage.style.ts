@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const LevelsPageContainer = styled.div`
   font-size: 20px;
-  display: grid;
-  grid-template-columns: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;

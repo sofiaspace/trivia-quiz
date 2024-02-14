@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-  margin-top: 10px;
   border: none;
   border-radius: 23px;
   font-weight: 700;
@@ -22,13 +21,7 @@ export const ButtonContainer = styled.button`
     background-color: #c1c0bc;
   }
 
-  &.correct {
-    filter: none;
-    background-color: green;
-    transition: none;
-  }
-
-  &.incorrect {
-    background-color: red;
+  &.smallBtn {
+    padding: 8px 12px;
   }
 `;

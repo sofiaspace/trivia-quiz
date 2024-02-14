@@ -1,66 +1,35 @@
-export interface QuizState {
-  status: string;
-  difficulty: string | undefined;
-  questions: Questions[] | undefined;
-  activeQuestion: number;
-  progressValue: number;
-  seconds: number;
-  selectedAnswer: string | undefined;
-  allAnswers: string[];
-  score: number;
-}
+import { QuizAction, QuizState, Status } from "./QuizReducer.types";
 
-export type QuizAction =
-  | { type: "active" }
-  | { type: "start" }
-  | { type: "back" }
-  | { type: "finish" }
-  | { type: "restart" }
-  | { type: "timeIsUp" }
-  | { type: "timer" }
-  | { type: "checkAnswers" }
-  | { type: "select"; payload: string }
-  | { type: "updateScore"; payload: number }
-  | { type: "nextQuestion" }
-  | { type: "setDifficulty"; payload: string | undefined }
-  | { type: "dataReceived"; payload: Questions[] | undefined };
-
-export interface QuestionsData {
-  response_code: number;
-  results: Questions[];
-}
-
-interface Questions {
-  type: string;
-  difficulty: string;
-  category: string;
-  correct_answer: string;
-  incorrect_answers: string[];
-  question: string;
-}
-
-export const initialState = {
-  status: "online",
-  difficulty: "",
+export const initialState: QuizState = {
+  status: Status.online,
+  difficulty: undefined,
   questions: [],
   activeQuestion: 0,
-  progressValue: 0,
+  progressValue: -1800,
   seconds: 90,
   selectedAnswer: "",
   score: 0,
   allAnswers: [],
+  isLoading: false,
 };
 
 export const QuizReduce = (state: QuizState, action: QuizAction) => {
   switch (action.type) {
     case "active":
-      return { ...state, status: "active" };
+      return { ...initialState, status: Status.active };
     case "start":
-      return { ...state, status: "start" };
+      return { ...state, status: Status.start };
     case "setDifficulty":
-      return { ...state, difficulty: action.payload, status: "ready" };
+      return { ...state, difficulty: action.payload };
+    case "loading":
+      return { ...state, isLoading: true };
     case "dataReceived":
-      return { ...state, questions: action.payload };
+      return {
+        ...state,
+        questions: action.payload,
+        isLoading: false,
+        status: Status.ready,
+      };
     case "nextQuestion":
       return {
         ...state,
@@ -72,7 +41,7 @@ export const QuizReduce = (state: QuizState, action: QuizAction) => {
         ...state,
         progressValue: state.progressValue + 1,
         seconds: state.seconds - 1,
-        status: state.seconds === 0 ? "finished" : state.status,
+        status: state.seconds === 0 ? Status.finished : state.status,
       };
     case "select":
       return {
@@ -83,13 +52,15 @@ export const QuizReduce = (state: QuizState, action: QuizAction) => {
     case "updateScore":
       return { ...state, score: state.score + action.payload };
     case "finish":
-      return { ...state, activeQuestion: 0, status: "finished" };
+      return { ...state, activeQuestion: 0, status: Status.finished };
     case "restart":
-      return { ...initialState, status: "active" };
+      return { ...initialState, status: Status.active };
     case "checkAnswers":
-      return { ...state, status: "check" };
+      return { ...state, status: Status.check };
+    case "submit":
+      return { ...state, status: Status.submit };
     case "timeIsUp":
-      return { ...state, status: "timeUp" };
+      return { ...state, status: Status.timeUp };
 
     default:
       throw new Error("Unknown Action");

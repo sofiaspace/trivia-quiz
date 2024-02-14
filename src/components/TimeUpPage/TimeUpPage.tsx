@@ -10,13 +10,7 @@ const TimeUpPage: FC = () => {
       <p>Time is up!</p>
       <p>You made it to navigate through {activeQuestion} questions!</p>
       <p>If you would like to restart the quiz, click "Restart".</p>
-      <Button
-        onClick={() => {
-          dispatch({ type: "restart" });
-        }}
-      >
-        Restart
-      </Button>
+      <Button onClick={() => dispatch({ type: "restart" })}>Restart</Button>
     </TimeUpContainer>
   );
 };

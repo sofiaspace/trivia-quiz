@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useMemo } from "react";
 import useQuizContext from "../../hooks/useQuizContext";
 import {
+  AnswersButton,
   AnswersContainer,
   QuestionContainer,
   QuestionsListContainer,
@@ -8,17 +9,13 @@ import {
 import he from "he";
 import { Button } from "../../ui/Button/Button";
 
-interface QuestionsListProps {}
-
-const QuestionsList: FC<QuestionsListProps> = () => {
-  const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+const QuestionsList: FC = () => {
   const {
     questions = [],
     activeQuestion,
     dispatch,
     selectedAnswer,
   } = useQuizContext();
-  console.log(questions);
 
   const { correct_answer, incorrect_answers } = questions[activeQuestion];
 
@@ -30,13 +27,12 @@ const QuestionsList: FC<QuestionsListProps> = () => {
     return array;
   };
 
-  useEffect(() => {
-    const answers = [correct_answer, ...incorrect_answers];
-    setShuffledAnswers(shuffle(answers));
-  }, [correct_answer, incorrect_answers]);
+  const shuffledAnswers = useMemo(
+    () => shuffle([correct_answer, ...incorrect_answers]),
+    [correct_answer, incorrect_answers]
+  );
 
   if (questions === undefined) return null;
-  console.log(selectedAnswer);
 
   return (
     <QuestionsListContainer>
@@ -44,20 +40,20 @@ const QuestionsList: FC<QuestionsListProps> = () => {
         {he.decode(questions[activeQuestion].question)}
       </QuestionContainer>
       <AnswersContainer>
-        {shuffledAnswers.map((answer, index) => (
-          <Button
+        {shuffledAnswers.map((answer) => (
+          <AnswersButton
             disabled={selectedAnswer !== ""}
-            className={
-              selectedAnswer !== ""
-                ? answer === correct_answer
-                  ? "correct"
-                  : "incorrect"
-                : ""
+            $status={
+              !selectedAnswer
+                ? undefined
+                : answer === correct_answer
+                ? "correct"
+                : "incorrect"
             }
             key={answer}
             onClick={() => {
               dispatch({ type: "select", payload: answer });
-              console.log(answer);
+
               if (answer === correct_answer) {
                 dispatch({
                   type: "updateScore",
@@ -67,7 +63,7 @@ const QuestionsList: FC<QuestionsListProps> = () => {
             }}
           >
             {he.decode(answer)}
-          </Button>
+          </AnswersButton>
         ))}
       </AnswersContainer>
       {activeQuestion === 14 ? (

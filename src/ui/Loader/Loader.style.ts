@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 export const LoaderContainer = styled.div`
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

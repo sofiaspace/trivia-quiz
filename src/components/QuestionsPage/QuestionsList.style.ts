@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { device } from "../../styles/mediaBreakpoints";
+import styled, { css } from "styled-components";
+import { Button } from "../../ui/Button/Button";
 
 export const QuestionsListContainer = styled.div``;
 
@@ -10,13 +10,26 @@ export const AnswersContainer = styled.div`
   text-align-last: left;
   display: flex;
   flex-direction: column;
-  width: 600px;
+  gap: 12px;
+  margin: 10px 0;
+`;
 
-  @media ${device.md} {
-    width: 400px;
+export const AnswersButton = styled(Button)<{
+  $status?: "correct" | "incorrect";
+}>`
+  &:disabled {
+    ${({ $status }) =>
+      $status === "correct" &&
+      css`
+        background-color: green;
+      `}
   }
 
-  @media ${device.sm} {
-    width: 300px;
+  &:disabled {
+    ${({ $status }) =>
+      $status === "incorrect" &&
+      css`
+        background-color: red;
+      `};
   }
 `;

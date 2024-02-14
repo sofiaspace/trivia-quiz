@@ -6,6 +6,7 @@ export const AnsweredQuestionsContainer = styled.div`
 
   @media ${device.md} {
     width: 350px;
+    font-size: 10px;
   }
 
   @media ${device.sm} {

@@ -17,9 +17,10 @@ const FinalPage: FC = () => {
       <p>
         If you would like to restart the quiz with new questions, click restart!
       </p>
-      <p>Or else, see you next time!</p>
+      <p>You can also submit your result by clicking submit.</p>
       <ButtonsContainer>
         <Button onClick={() => dispatch({ type: "restart" })}>Restart</Button>
+        <Button onClick={() => dispatch({ type: "submit" })}>Submit</Button>
       </ButtonsContainer>
     </FinalPageContainer>
   );

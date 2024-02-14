@@ -4,21 +4,25 @@ import { device } from "./styles/mediaBreakpoints";
 export const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
 `;
 export const PagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   max-width: 600px;
-  max-height: 100%;
-  padding-top: 20px;
+  padding: 20px;
+
+  /* @media ${device.lg} {
+    width: 500px;
+  } */
+  /* @media ${device.md} {
+    width: 300px;
+  } */
 
   @media ${device.sm} {
-    width: 300px;
+    width: 350px;
   }
 `;

@@ -7,13 +7,12 @@ import {
   Reducer,
   useReducer,
 } from "react";
+import { QuizReduce, initialState } from "../reducer/QuizReducer";
 import {
-  QuizReduce,
-  initialState,
-  QuizState,
-  QuizAction,
   QuestionsData,
-} from "../reducer/QuizReducer";
+  QuizAction,
+  QuizState,
+} from "../reducer/QuizReducer.types";
 
 export interface Props extends QuizState {
   dispatch: Dispatch<QuizAction>;
@@ -28,10 +27,11 @@ export const QuizProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   useEffect(() => {
-    async function fetchEasyQuestions() {
+    async function fetchQuestions() {
       if (!state.difficulty) {
         return;
       }
+      dispatch({ type: "loading" });
       try {
         const res = await fetch(
           `https://opentdb.com/api.php?amount=15&difficulty=${state.difficulty}`
@@ -42,7 +42,7 @@ export const QuizProvider: FC<PropsWithChildren> = ({ children }) => {
         throw new Error("Error fetching quiz data");
       }
     }
-    fetchEasyQuestions();
+    fetchQuestions();
   }, [state.difficulty]);
 
   return (

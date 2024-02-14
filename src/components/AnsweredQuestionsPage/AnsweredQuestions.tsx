@@ -8,6 +8,7 @@ import {
 } from "./AnsweredQuestions.style";
 import useQuizContext from "../../hooks/useQuizContext";
 import { Button } from "../../ui/Button/Button";
+import { ButtonsContainer } from "../FinalPage/FinalPage.style";
 
 const AnsweredQuestions: FC = () => {
   const { allAnswers, questions, dispatch } = useQuizContext();
@@ -26,13 +27,16 @@ const AnsweredQuestions: FC = () => {
               <div>{he.decode(question.question)}</div>
               <AnswersContainer>
                 <div>Correct answer: {he.decode(question.correct_answer)}</div>
-                <div>Your answer: {allAnswers[index]}</div>
+                <div>Your answer: {he.decode(allAnswers[index])}</div>
               </AnswersContainer>
             </QuestionsList>
           ))}
         </ol>
       </DisplayedQuestions>
-      <Button onClick={() => dispatch({ type: "restart" })}>Restart</Button>
+      <ButtonsContainer>
+        <Button onClick={() => dispatch({ type: "restart" })}>Restart</Button>
+        <Button onClick={() => dispatch({ type: "submit" })}>Submit</Button>
+      </ButtonsContainer>
     </AnsweredQuestionsContainer>
   );
 };
