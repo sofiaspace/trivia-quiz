@@ -4,11 +4,10 @@
 
 # Description
 
-The quiz app is designed to challenge users with 15 questions across three levels of difficulty: easy, medium, and hard. Players have a total of 90 seconds to
-
-answer all the questions. The app was built using create-react-app, TypeScript, and Styled Components. Additionally, the he library was utilized to decode HTML
-
-entities retrieved from an external API.
+The quiz app is designed to challenge users with 15 questions across three levels of difficulty: easy, medium, and hard.
+Players have a total of 90 seconds to answer all the questions.
+The app was built using create-react-app, TypeScript, and Styled Components.
+Additionally, the he library was utilized to decode HTML entities retrieved from an external API.
 
 # Key Features
 
@@ -36,11 +35,11 @@ State Management:
 
 User Interaction:
 
-Users select answers and progress through the quiz.
+✅Users select answers and progress through the quiz.
 
-Scores are calculated based on the number of correct answers.
+✅Scores are calculated based on the number of correct answers.
 
-Users can check all answers at the end of the game.
+✅Users can check all answers at the end of the game.
 
 Local Storage:
 
