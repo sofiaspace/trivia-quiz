@@ -5,7 +5,7 @@ export const initialState: QuizState = {
   difficulty: undefined,
   questions: [],
   activeQuestion: 0,
-  progressValue: -1800,
+  progressValue: 0,
   seconds: 90,
   selectedAnswer: "",
   score: 0,

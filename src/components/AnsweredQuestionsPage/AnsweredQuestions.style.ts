@@ -5,12 +5,8 @@ export const AnsweredQuestionsContainer = styled.div`
   width: 800px;
 
   @media ${device.md} {
-    width: 350px;
-    font-size: 10px;
-  }
-
-  @media ${device.sm} {
-    width: 250px;
+    width: 100%;
+    font-size: 15px;
   }
 `;
 
@@ -21,6 +17,7 @@ export const DisplayedQuestions = styled.div`
   color: black;
   text-align: left;
   padding: 10px 20px;
+  margin-bottom: 15px;
 `;
 
 export const QuestionsList = styled.li`

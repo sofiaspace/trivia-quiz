@@ -7,10 +7,9 @@ export const HeaderContainer = styled.header`
   font-weight: 400;
   font-style: normal;
   font-size: 40px;
-
   margin: 20px;
 
   @media ${device.xs} {
-    font-size: 30px;
+    font-size: 35px;
   }
 `;

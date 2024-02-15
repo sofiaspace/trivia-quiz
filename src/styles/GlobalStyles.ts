@@ -10,6 +10,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     @media ${device.lg} {
       margin: 3rem 0;
     }
+
     @media ${device.md} {
       margin: 2rem 0;
     }

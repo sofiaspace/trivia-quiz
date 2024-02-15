@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { AppContainer, PagesContainer } from "./App.style";
 import Loader from "./ui/Loader/Loader";
@@ -31,10 +31,10 @@ const App: FC = () => {
 
             {status === Status.ready && <QuestionsPage />}
             {status === Status.start && (
-              <>
+              <Fragment>
                 <ProgressBar />
                 <QuestionsList />
-              </>
+              </Fragment>
             )}
 
             {status === Status.finished && <FinalPage />}

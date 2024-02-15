@@ -1,17 +1,9 @@
 import styled from "styled-components";
-import { device } from "../../styles/mediaBreakpoints";
 
 export const ProgressBarContainer = styled.div`
+  align-self: stretch;
   progress[value] {
     width: 100%;
-
-    @media ${device.md} {
-      width: 350px;
-    }
-
-    @media ${device.sm} {
-      width: 250px;
-    }
 
     -webkit-appearance: none;
     appearance: none;
