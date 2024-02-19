@@ -13,51 +13,51 @@ Additionally, the he library was utilized to decode HTML entities retrieved from
 
 Three Difficulty Levels:
 
-✅Easy: Questions suitable for beginners.
+✅ Easy: Questions suitable for beginners.
 
-✅Medium: Slightly more challenging questions.
+✅ Medium: Slightly more challenging questions.
 
-✅Hard: For seasoned quizzers and experts.
+✅ Hard: For seasoned quizzers and experts.
 
 Time Limit:
 
-✅Users must answer all questions within 90 seconds.
+✅ Users must answer all questions within 90 seconds.
 
 State Management:
 
-✅useState: Used to manage local component state.
+✅ useState: Used to manage local component state.
 
-✅useEffect: Handles side effects and data fetching.
+✅ useEffect: Handles side effects and data fetching.
 
-✅useReducer: Manages complex state logic.
+✅ useReducer: Manages complex state logic.
 
-✅Context API: Provides global state management.
+✅ Context API: Provides global state management.
 
 User Interaction:
 
-✅Users select answers and progress through the quiz.
+✅ Users select answers and progress through the quiz.
 
-✅Scores are calculated based on the number of correct answers.
+✅ Scores are calculated based on the number of correct answers.
 
-✅Users can check all answers at the end of the game.
+✅ Users can check all answers at the end of the game.
 
 Local Storage:
 
-✅Usernames and scores can be stored in localStorage for future display or retrieval.
+✅ Usernames and scores can be stored in localStorage for future display or retrieval.
 
 Technical Stack
 
-✅Frontend Framework: React (created with create-react-app)
+✅ Frontend Framework: React (created with create-react-app)
 
-✅Language: TypeScript
+✅ Language: TypeScript
 
-✅Styling: Styled Components
+✅ Styling: Styled Components
 
-✅HTML Entities Decoding: he library
+✅ HTML Entities Decoding: he library
 
-✅State Management: useState, useEffect, useReducer, and Context API
+✅ State Management: useState, useEffect, useReducer, and Context API
 
-![he library](./public/heLibrary.png)
-![context API](./public/quizContext.png)
-![useReducer](./public/quizReduce.png)
-![useState](./public/useState.png)
+![startScreen](./public/startScreen.png)
+![scores](./public/scores.png)
+![question](./public/question.png)
+![difficulty](./public/difficulty.png)
